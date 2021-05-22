@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+print_r($_SESSION);
 
 
 if (!$_SESSION['logado']) {
@@ -11,7 +11,7 @@ if (!$_SESSION['logado']) {
 
 <h1>Olá, seja bem vindo ao seu bloco de anotações na nuvem.</h1>
 
-<form action="validation.php" method='POST'>
+<form action="controller/loginAction.php" method='POST'>
     <label>
         Email:
         <input type="email" name='email'>

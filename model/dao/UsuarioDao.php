@@ -1,5 +1,6 @@
 <?php
-require '../Usuario.php';
+require "../model/Usuario.php";
+
 
 class UsuarioDao implements Dao{
     private $pdo;
@@ -10,9 +11,9 @@ class UsuarioDao implements Dao{
     
     public function create(Usuario $u){
         $sql = $this -> pdo -> prepare('INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)');
-        $sql -> bindValue(':nome', $u -> nome);
-        $sql -> bindValue(':email', $u -> email);
-        $sql -> bindValue(':senha', $u -> senha);
+        $sql -> bindValue(':nome', $u -> getNome());
+        $sql -> bindValue(':email', $u -> getEmail());
+        $sql -> bindValue(':senha', $u -> getSenha());
         $sql -> execute();
 
         $u->setId($this->pdo->lastInsertId());
@@ -37,6 +38,23 @@ class UsuarioDao implements Dao{
     }
     public function findAll(){
 
+    }
+    public function findByEmail($email){
+        $sql = $this -> pdo -> prepare("SELECT * FROM usuarios WHERE email=:email");
+        $sql -> bindValue(":email", $email);
+        $sql -> execute();
+
+        $usuario = new Usuario();
+        if ($sql -> rowCount() > 0) {
+            $dados = $sql -> fetch();
+            $usuario -> setId($dados['id']);
+            $usuario -> setEmail($dados['email']);
+            $usuario -> setNome($dados['nome']);
+            $usuario -> setSenha($dados['senha']);
+
+            return $usuario;
+        }
+        return false;
     }
     public function update(Usuario $u){
 
