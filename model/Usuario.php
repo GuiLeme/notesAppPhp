@@ -29,7 +29,13 @@ class Usuario{
     public function setSenha($s){
         $this -> senha = $s;
     }
-    
+    public function strToUsu($u){
+        $u = explode(";", $u);
+
+        $this -> id = (int)$u['0'];
+        $this -> email = $u['1'];
+        $this -> nome = $u['2'];
+    }
 }
 
 interface Dao{

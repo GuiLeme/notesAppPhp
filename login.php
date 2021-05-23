@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-print_r($_SESSION);
-
 
 if (!$_SESSION['logado']) {
     echo "<h2>Você não está logado. Por favor, faça o Login, ou crie um usuário:</h2>";

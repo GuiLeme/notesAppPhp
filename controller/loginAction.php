@@ -16,10 +16,11 @@ $eUsuario = false;
 if ($usuario!=false){
     $eUsuario = ($senha == $usuario -> getSenha());
 }
-$_SESSION['teste'] = $eUsuario;
+
 
 if ($eUsuario){
-    setcookie('usuario', $usuario->getId().';'.$usuario->getEmail().$usuario->getNome(), time()+3600);
+    
+    $_SESSION['teste'] = setcookie('usuario', $usuario->getId().";".$usuario->getEmail().";".$usuario->getNome(), time()+3600, '/');
     $_SESSION['logado'] = true; 
     header("Location: ../index.php");
     exit;
