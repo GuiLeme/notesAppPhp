@@ -1,7 +1,4 @@
 <?php
-require "../model/Usuario.php";
-
-
 class UsuarioDao implements Dao{
     private $pdo;
 

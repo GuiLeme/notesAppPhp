@@ -1,21 +1,23 @@
 <?php
 require "middleware/authMiddleware.php";
 
-
+require "model/config.php";
+require "model/Nota.php";
 require "model/dao/NotaDao.php";
 require "model/Usuario.php";
-require "model/config.php";
 
 $u = $_COOKIE["usuario"];
 
 $usuario = new Usuario();
-$teste = $usuario -> strToUsu($u);
+$usuario -> strToUsu($u);
 
-$nDao = new NotaDao($pdo, $usuario -> getId());
+$pdo -> prepare("SELECT * FROM usuarios");
+
+$nDao = new NotaDao($p = $pdo, $idUsu = $usuario -> getId());
 
 require 'view/index.html';
 ?>
-<h1>Seja bem vindo(a) às suas notas!</h1>
+<h1>Seja bem vindo(a) às suas notas, <?php echo $usuario->getNome();?>!</h1>
 <hr>
 <?php require 'view/helpers/header.html'; ?>
 <hr>
@@ -25,7 +27,7 @@ require 'view/index.html';
 $resultado = $nDao->findAll();
 if ($resultado != false) {
     foreach($resultado as $nota){
-        echo "<li>".$nota."</li>";
+        echo "<li>".$nota['corpo']."</li>";
     }
 }
 ?>

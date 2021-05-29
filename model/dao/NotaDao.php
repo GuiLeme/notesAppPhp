@@ -1,17 +1,15 @@
 <?php
-require 'model/Nota.php';
-
 class NotaDao implements DaoNota{
     private $pdo;
     private $idUsuario;
 
     public function __construct(PDO $p, $idUsu){
         $this -> pdo = $p;
-        $this -> pdo = $idUsu;
+        $this -> idUsuario = $idUsu;
     }
 
     public function create(Nota $n){
-        $sql = $this -> pdo -> prepare("INSERT INTO notas (idUsuario, corpo, aparece) VALUES (:iUsu, corpo, aparece)");
+        $sql = $this -> pdo -> prepare("INSERT INTO notas (idUsuario, corpo, aparece) VALUES (:iUsu, :corpo, :aparece)");
         $sql -> bindValue(':iUsu', $this -> idUsuario);
         $sql -> bindValue(':corpo', $n -> getCorpo());
         $sql -> bindValue(':aparece', $n -> getAparece());
@@ -26,7 +24,7 @@ class NotaDao implements DaoNota{
     }
     public function findAll(){
         $sql = $this -> pdo -> prepare("SELECT * FROM notas WHERE idUsuario=:idUsuario");
-        $sql -> bindValue(':idUsuario', $this -> idUsu);
+        $sql -> bindValue(':idUsuario', $this -> idUsuario);
         $sql -> execute();
         
         if ($sql -> rowCount()>0){

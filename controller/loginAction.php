@@ -1,7 +1,9 @@
 <?php
 session_start();
 
+require "../model/Usuario.php";
 require "../model/dao/UsuarioDao.php";
+
 require "../model/config.php";
 
 $udao = new UsuarioDao($pdo);
