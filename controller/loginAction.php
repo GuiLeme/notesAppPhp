@@ -22,7 +22,7 @@ if ($usuario!=false){
 
 if ($eUsuario){
     
-    $_SESSION['teste'] = setcookie('usuario', $usuario->getId().";".$usuario->getEmail().";".$usuario->getNome(), time()+3600, '/');
+    setcookie('usuario', $usuario->getId().";".$usuario->getEmail().";".$usuario->getNome(), time()+3600, '/');
     $_SESSION['logado'] = true; 
     header("Location: ../index.php");
     exit;

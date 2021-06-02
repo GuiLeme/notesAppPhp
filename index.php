@@ -16,20 +16,36 @@ $pdo -> prepare("SELECT * FROM usuarios");
 $nDao = new NotaDao($p = $pdo, $idUsu = $usuario -> getId());
 
 require 'view/index.html';
+
+if ($_SESSION['deletado']){
+    echo 'Nota deletada com sucesso.';
+    $_SESSION['deletado'] = false;
+}
+if ($_SESSION['atualizado']){
+    echo 'Nota atualizada com sucesso.';
+    $_SESSION['atualizado'] = false;
+}
 ?>
 <h1>Seja bem vindo(a) às suas notas, <?php echo $usuario->getNome();?>!</h1>
 <hr>
 <?php require 'view/helpers/header.html'; ?>
 <hr>
+<a href="middleware/sair.php">Sair</a>
 <div>
-<ul>
-<?php 
-$resultado = $nDao->findAll();
-if ($resultado != false) {
-    foreach($resultado as $nota){
-        echo "<li>".$nota['corpo']."</li>";
+    <ul>
+    <?php 
+    $resultado = $nDao->findAll();
+    if ($resultado != false) {
+        foreach($resultado as $nota){
+            echo "<li><input class='check' type='checkbox' id=".$nota['idNota'].">".$nota['corpo']."|| <a href='controller/deleteAction.php/?idNota=".$nota['idNota']."'>Deletar Nota</a> || <a href='atualizaNota.php/?idNota=".$nota['idNota']."'>Atualizar Nota</a> </li>";
+        }
     }
-}
-?>
-</ul>
+    ?>
+    </ul>
+    
+    <form action="update.php" method="POST">
+        <input type="hidden" id='listaAnterior'>
+        <input type="hidden" id='mudou'>
+    </form>
 </div>
+<script src="assets/js/index.js"></script>
