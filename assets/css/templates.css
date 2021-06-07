@@ -1,0 +1,34 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+
+.container{
+    margin: 20px;
+
+}
+
+.menuPrincipal ul{
+    list-style: none;  
+    display: flex;
+    align-items: center;
+}
+
+.menuPrincipal li {
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid #333;
+}
+
+.menuPrincipal a{
+    text-decoration: none;
+    color: #000;
+}
+
+.menuPrincipal a:hover{
+    font-size: 20px;
+}
+
+.menuPrincipal{
+    margin-bottom: 20px;
+}

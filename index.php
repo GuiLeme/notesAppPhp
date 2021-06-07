@@ -26,26 +26,29 @@ if ($_SESSION['atualizado']){
     $_SESSION['atualizado'] = false;
 }
 ?>
-<h1>Seja bem vindo(a) às suas notas, <?php echo $usuario->getNome();?>!</h1>
-<hr>
-<?php require 'view/helpers/header.html'; ?>
-<hr>
-<a href="middleware/sair.php">Sair</a>
-<div>
-    <ul>
-    <?php 
-    $resultado = $nDao->findAll();
-    if ($resultado != false) {
-        foreach($resultado as $nota){
-            echo "<li><input class='check' type='checkbox' id=".$nota['idNota'].">".$nota['corpo']."|| <a href='controller/deleteAction.php/?idNota=".$nota['idNota']."'>Deletar Nota</a> || <a href='atualizaNota.php/?idNota=".$nota['idNota']."'>Atualizar Nota</a> </li>";
+
+<div class="container">
+    <h1 style="margin: 30px">Seja bem vindo(a) às suas notas, <?php echo $usuario->getNome();?>!</h1>
+
+    <?php require 'view/helpers/header.html'; ?>
+
+    <a href="middleware/sair.php">Sair</a>
+    <div>
+        <ul>
+        <?php 
+        $resultado = $nDao->findAll();
+        if ($resultado != false) {
+            foreach($resultado as $nota){
+                echo "<li><input class='check' type='checkbox' id=".$nota['idNota'].">".$nota['corpo']."|| <a href='controller/deleteAction.php/?idNota=".$nota['idNota']."'>Deletar Nota</a> || <a href='atualizaNota.php/?idNota=".$nota['idNota']."'>Atualizar Nota</a> </li>";
+            }
         }
-    }
-    ?>
-    </ul>
-    
-    <form action="update.php" method="POST">
-        <input type="hidden" id='listaAnterior'>
-        <input type="hidden" id='mudou'>
-    </form>
+        ?>
+        </ul>
+        
+        <form action="update.php" method="POST">
+            <input type="hidden" id='listaAnterior'>
+            <input type="hidden" id='mudou'>
+        </form>
+    </div>
+    <script src="assets/js/index.js"></script>
 </div>
-<script src="assets/js/index.js"></script>

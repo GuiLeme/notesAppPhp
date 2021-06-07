@@ -20,9 +20,9 @@ $nota = $nDao->findById($idNota);
 ?>
 <hr>
 
-<form action="controller/atualizaNotaAction.php" method="POST">
+<form action="../controller/atualizaNotaAction.php" method="POST">
     <label>
-        Digite sua nota:
+        O que você quer modificar?
         <input type="text" name="corpo" value='<?php echo $nota['corpo'];?>'>
     </label>
     <input type="hidden" value="<?php echo $idNota?>" name='idNota'>
