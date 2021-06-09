@@ -1,17 +1,20 @@
 *{
     margin:0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 .container{
-    margin: 20px;
-
+    background-color: rgb(11, 219, 209);
+    margin: auto;
+    width: 100%;
+    max-width: 1140px;
 }
 
 .menuPrincipal ul{
     list-style: none;  
     display: flex;
-    align-items: center;
+    justify-items: center;
 }
 
 .menuPrincipal li {
@@ -30,5 +33,9 @@
 }
 
 .menuPrincipal{
-    margin-bottom: 20px;
+    margin-bottom: 100px;
+}
+
+.lista-tarefas{
+    list-style: none;
 }

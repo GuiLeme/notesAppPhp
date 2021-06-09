@@ -34,7 +34,7 @@ if ($_SESSION['atualizado']){
 
     <a href="middleware/sair.php">Sair</a>
     <div>
-        <ul>
+        <ul class="lista-tarefas">
         <?php 
         $resultado = $nDao->findAll();
         if ($resultado != false) {
@@ -50,5 +50,5 @@ if ($_SESSION['atualizado']){
             <input type="hidden" id='mudou'>
         </form>
     </div>
-    <script src="assets/js/index.js"></script>
 </div>
+<script src="assets/js/index.js"></script>
